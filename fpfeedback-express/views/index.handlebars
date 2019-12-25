@@ -1,0 +1,11 @@
+
+
+  <h1>{{title }}</h1>
+  <p>Welcome to {{title }}!</p>
+  <p>Feedback list:
+	<ul>
+	 {{#each opinions}}
+		<li>{{email}} {{name}} {{age}}</li>
+	{{/each}}
+	</ul>
+  </p>
