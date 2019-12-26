@@ -10,7 +10,11 @@ const bodyParser = require('body-parser');
 const exphbs  = require('express-handlebars');
 
 const routes = require('./routes/index');
-const users = require('./routes/user');
+const feedback = require('./routes/feedback');
+const cafe = require('./routes/cafe');
+const api = require('./routes/api');
+const calculator = require('./routes/calculator');
+
 
 const app = express();
 
@@ -37,7 +41,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/feedback', feedback);
+app.use('/ads', cafe);
+app.use('/calculator', calculator);
+app.use('/api/v1', api);
 
 /// catch 404 and forward to error handler
 app.use((req, res, next) => {
