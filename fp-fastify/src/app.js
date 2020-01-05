@@ -13,15 +13,19 @@ fastify.register(swagger, documentation)
 fastify.register(v1, { prefix: '/v1' })
 
 // Server
-fastify.listen(port, '0.0.0.0', err => {
-  if (err) {
+const start = async () => {
+  try {
+    await fastify.listen(port)
+    fastify.swagger()
+
+    fastify.log.info(`server listening on ${fastify.server.address().port} ${name} ${process.env.NODE_ENV}`)
+  } catch (err) {
     fastify.log.error(err)
     process.exit(1)
   }
+}
+start()
 
-  fastify.swagger()
-  fastify.log.info('%s listening in %s environment', name, process.env.NODE_ENV)
-})
 
 // Export fastify for testing purpose
 module.exports = { fastify }
