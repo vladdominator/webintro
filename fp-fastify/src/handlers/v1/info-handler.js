@@ -9,13 +9,10 @@
   reply.code(200).send('API is alive')
 }*/
 
-const keepAlive = async (request, reply) => {
+const keepAlive = async () => {
   return 'API is alive'
 } 
 
-const tripsStatus = async (request, reply) => {
-  return 'API is alive'
-} 
 
 const uberSampleJson = [{
   "product_id": "17cb78a7-b672-4d34-a288-a6c6e44d5315",
@@ -27,14 +24,14 @@ const uberSampleJson = [{
     "phone_number": "(415)555-1212",
     "sms_number": "(415)555-1212",
     "rating": 5,
-    "picture_url": "https:\/\/d1w2poirtb3as9.cloudfront.net\/img.jpeg",
+    "picture_url": "https://d1w2poirtb3as9.cloudfront.net/img.jpeg",
     "name": "Bob"
   },
   "vehicle": {
     "make": "Bugatti",
     "model": "Veyron",
     "license_plate": "I<3Uber",
-    "picture_url": "https:\/\/d1w2poirtb3as9.cloudfront.net\/car.jpeg"
+    "picture_url": "https://d1w2poirtb3as9.cloudfront.net/car.jpeg"
   },
   "location": {
     "latitude": 37.3382129093,
@@ -85,5 +82,8 @@ const uberSampleJson = [{
   ]
 }]
 
+const tripsStatus = async () => {
+  return uberSampleJson
+} 
 
-module.exports = { keepAlive }
+module.exports = { keepAlive, tripsStatus }

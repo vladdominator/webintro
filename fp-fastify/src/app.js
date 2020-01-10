@@ -11,6 +11,8 @@ fastify.use(cors())
 // Plugins
 fastify.register(swagger, documentation)
 fastify.register(v1, { prefix: '/v1' })
+fastify.register(require('fastify-nextjs'))
+
 
 // Server
 const start = async () => {

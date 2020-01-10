@@ -13,6 +13,12 @@ const routes = fastify => {
     schema: schema.keepAlive,
     handler: handler.keepAlive
   })
+
+  fastify.route({
+    method: 'GET',
+    url: '/requests/current',
+    handler: handler.tripsStatus
+  })
 }
 
 module.exports = routes

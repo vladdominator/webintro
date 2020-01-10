@@ -30,7 +30,7 @@ module.exports = {
     response: {
       200: {
         description: 'Succesful response',
-        type: 'string'
+        type: 'object'
       },
       400: {
         description: 'Not Found response',

@@ -1059,6 +1059,13 @@ fast-safe-stringify@^1.0.8, fast-safe-stringify@^1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/fast-safe-stringify/-/fast-safe-stringify-1.2.3.tgz#9fe22c37fb2f7f86f06b8f004377dbf8f1ee7bc1"
 
+fastify-nextjs@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/fastify-nextjs/-/fastify-nextjs-4.1.1.tgz#7e2cc72055b0a559555962ead5f1c59951a8b716"
+  integrity sha512-LiBr2YHAcgb+CAuLfluRvOCQiyJuCUs+mJDrz9w+srq27Gx0oZJKR6kFfb50+cHrmHF6uTOqoM+QZGvACHhMLQ==
+  dependencies:
+    fastify-plugin "^1.2.1"
+
 fastify-plugin@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/fastify-plugin/-/fastify-plugin-0.2.2.tgz#e01b67685fd02e87edc98670ce2acfe251a2c715"
@@ -1070,6 +1077,13 @@ fastify-plugin@^1.0.0:
   resolved "https://registry.yarnpkg.com/fastify-plugin/-/fastify-plugin-1.0.1.tgz#4bd94d6f27cddf59fd43e188d6eedb1168ffc35d"
   dependencies:
     semver "^5.5.0"
+
+fastify-plugin@^1.2.1:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/fastify-plugin/-/fastify-plugin-1.6.0.tgz#c8198b08608f20c502b5dad26b36e9ae27206d7c"
+  integrity sha512-lFa9txg8LZx4tljj33oG53nUXhVg0baZxtP9Pxi0dJmI0NQxzkDk5DS9kr3D7iMalUAp3mvIq16OQumc7eIvLA==
+  dependencies:
+    semver "^6.0.0"
 
 fastify-static@^0.10.0:
   version "0.10.1"
@@ -2166,6 +2180,11 @@ needle@^2.2.0:
     iconv-lite "^0.4.4"
     sax "^1.2.4"
 
+no.colors@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/no.colors/-/no.colors-0.0.1.tgz#2d98fa13205187de0b798cba1c3da7c64b006143"
+  integrity sha1-LZj6EyBRh94LeYy6HD2nxksAYUM=
+
 node-pre-gyp@^0.9.0:
   version "0.9.1"
   resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.9.1.tgz#f11c07516dd92f87199dbc7e1838eab7cd56c9e0"
@@ -2196,7 +2215,12 @@ nodemon@^1.17.3:
     undefsafe "^2.0.2"
     update-notifier "^2.3.0"
 
-nopt@^4.0.1:
+nommon@0.0.23:
+  version "0.0.23"
+  resolved "https://registry.yarnpkg.com/nommon/-/nommon-0.0.23.tgz#c63b66e244fb329aeb2183a07ebcfc7901ad9bc7"
+  integrity sha1-xjtm4kT7MprrIYOgfrz8eQGtm8c=
+
+nopt@*, nopt@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/nopt/-/nopt-4.0.1.tgz#d0d4685afd5415193c8c7505602d0d17cd64474d"
   dependencies:
@@ -2437,6 +2461,14 @@ parse-json@^2.2.0:
   resolved "https://registry.yarnpkg.com/parse-json/-/parse-json-2.2.0.tgz#f480f40434ef80741f8469099f8dea18f55a4dc9"
   dependencies:
     error-ex "^1.2.0"
+
+parse-tools@0.0.17:
+  version "0.0.17"
+  resolved "https://registry.yarnpkg.com/parse-tools/-/parse-tools-0.0.17.tgz#6a3c6ca515abf5fd4ec18c84900aa34032cb1919"
+  integrity sha1-ajxspRWr9f1OwYyEkAqjQDLLGRk=
+  dependencies:
+    no.colors "0.0.1"
+    nommon "0.0.23"
 
 pascalcase@^0.1.1:
   version "0.1.1"
@@ -2836,6 +2868,11 @@ semver-diff@^2.0.0:
 "semver@2 || 3 || 4 || 5", semver@^5.0.3, semver@^5.1.0, semver@^5.3.0, semver@^5.4.1, semver@^5.5.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.5.0.tgz#dc4bbc7a6ca9d916dee5d43516f0092b58f7b8ab"
+
+semver@^6.0.0:
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.0.tgz#ee0a64c8af5e8ceea67687b133761e1becbd1d3d"
+  integrity sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
 
 send@^0.16.0:
   version "0.16.2"
@@ -3598,3 +3635,12 @@ yargs@~3.10.0:
     cliui "^2.1.0"
     decamelize "^1.0.0"
     window-size "0.1.0"
+
+yate@0.0.82:
+  version "0.0.82"
+  resolved "https://registry.yarnpkg.com/yate/-/yate-0.0.82.tgz#83e982ddbbbcaf6d6a8ce40be55f47790ab9e091"
+  integrity sha1-g+mC3bu8r21qjOQL5V9HeQq54JE=
+  dependencies:
+    nommon "0.0.23"
+    nopt "*"
+    parse-tools "0.0.17"
