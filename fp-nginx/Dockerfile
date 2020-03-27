@@ -6,9 +6,10 @@
 # and includes luarocks and envsubst.
 
 ARG RESTY_IMAGE_BASE="openresty/openresty"
+ARG RESTY_IMAGE_VERSION="1.15.8.1-3"
 ARG RESTY_IMAGE_TAG="alpine"
 
-FROM ${RESTY_IMAGE_BASE}:${RESTY_IMAGE_TAG}
+FROM ${RESTY_IMAGE_BASE}:${RESTY_IMAGE_VERSION}-${RESTY_IMAGE_TAG}
 
 LABEL maintainer="Evan Wies <evan@neomantra.net>"
 
@@ -51,7 +52,8 @@ RUN apk add --no-cache --virtual .build-deps \
     )" \
     && apk add --no-cache --virtual $runDeps \
     && apk del .build-deps .gettext \
-    && mv /tmp/envsubst /usr/local/bin/
+    && mv /tmp/envsubst /usr/local/bin/ \
+    && mkdir /var/run/openresty
 
 # Add LuaRocks paths
 # If OpenResty changes, these may need updating:
