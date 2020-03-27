@@ -23,7 +23,7 @@
             <main>
                 <xsl:apply-templates/>
             </main>
-            <footer>(c) ForestPath project</footer>
+            <footer>(c) 2020, ForestPath example</footer>
         </xsl:copy>
     </xsl:template>
 
