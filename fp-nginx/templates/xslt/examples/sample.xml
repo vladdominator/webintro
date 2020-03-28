@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<university>
+    <student name="Ivanova Liza" group="9"/>
+    <student name="Ivanov Pavel" group="2"/>
+    <student name="Ivanova Maria" group="9"/>
+    <student name="Ivanov Sergey" group="9"/>
+    <student name="Ivanova Stefania" group="2"/>
+    <student name="Ivanova Michael" group="2"/>
+    <student name="Ivanova Zara" group="10"/>
+    <student name="Ivanov Maxim" group="10"/>
+</university>
