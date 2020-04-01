@@ -4,9 +4,22 @@ const faker = require('faker')
 
 
 /* GET users listing. */
-router.get('/calculator/time/:from/:to', (req, res) => {
-  console.log("day=" + req.query.day + ", from=" + req.params.from + ", to=" + req.params.to)
-  res.send({from: req.params.from, to: req.params.to, time: faker.date.recent()});
+router.get('/hostels/:hostel/orders', (req, res) => {
+  console.log("GET /hostels with PathParam '" + 
+  	req.params.hostel + "'',  QueryParam '" + 
+  	req.query.date + "'")
+  res.send([
+  	{ 
+  	 date: req.query.date, room: '29',
+  	 product: 'English breakfast', 
+  	 quantity: faker.random.number(), waiting: 50, status: 'processing'
+  	}, 
+  	{ 
+  	 date: req.query.date, room: '30',
+  	 product: 'Ulun', 
+  	 quantity: faker.random.number(), waiting: 50, status: 'processing'
+  	}
+  ]);
 });
 
 module.exports = router;

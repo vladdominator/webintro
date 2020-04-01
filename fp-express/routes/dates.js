@@ -8,25 +8,25 @@ const faker = require('faker')
 jsf.extend('chance', () => new chance.Chance());
 jsf.extend('faker', () => faker);
 
-var selectCitiesSchema = {
+var selectDeliveryDatesSchema = {
   "type": "array",
-  "minItems": 3,
-  "maxItems": 8,
+  "minItems": 1,
+  "maxItems": 5,
   "items": {
 	      "type": "string",
-	      "chance":  "city" 
+	      "chance":  "weekday" 
    }
 };
 
 /* GET home page. */
-router.get('/cities', (req, res) => {
+router.get('/', (req, res) => {
 
-  jsf.resolve(selectCitiesSchema).then(sample => {
+  jsf.resolve(selectDeliveryDatesSchema).then(sample => {
   	   console.log(util.inspect(sample, 
   	   	{showHidden: false, depth: null}));
 	   
-	   res.render('cities',  
-	  	{  cities:  sample });
+	   res.render('dates',  
+	  	{  dates:  sample });
   });
 
   

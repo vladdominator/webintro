@@ -13,7 +13,7 @@ const routes = require('./routes/index');
 const feedback = require('./routes/feedback');
 const cafe = require('./routes/cafe');
 const api = require('./routes/api');
-const calculator = require('./routes/calculator');
+const dates = require('./routes/dates');
 
 
 const app = express();
@@ -43,7 +43,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/feedback', feedback);
 app.use('/ads', cafe);
-app.use('/calculator', calculator);
+app.use('/dates', dates);
 app.use('/api/v1', api);
 
 /// catch 404 and forward to error handler
