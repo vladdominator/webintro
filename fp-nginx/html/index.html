@@ -11,7 +11,13 @@
 </style>
 </head>
 <body>
-<h1>Welcome to Scaledlearn OpenResty!</h1>
-<p><a href="/atom.xml">/atom.xml</a>, <a href="/lua/plain">/lua/plain</a>, <a href="/lua/greetings?message=hi">/lua/greetings?message=hi</a></p>
+	<header>
+		<h1>Tea service</h1>
+		<h2>Tea on demand</h2>
+	</header>
+
+    <!--#include virtual="/orders.xml" -->
+
+	<footer><a href="/atom.xml">/atom.xml</a>, <a href="/lua/plain">/lua/plain</a>, <a href="/lua/greetings?message=hi">/lua/greetings?message=hi</a></footer>
 </body>
 </html>
