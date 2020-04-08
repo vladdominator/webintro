@@ -1,6 +1,6 @@
 swagger: "2.0"
 info:
-  version: "0.0.2"
+  version: "0.0.3"
   title: Tea service
 # during dev, should point to your local machine
 host: localhost:10010
@@ -26,9 +26,9 @@ paths:
       # used as the method name of the controller
       operationId: hello
       parameters:
-        - name: name
+        - name: tea
           in: query
-          description: The name of the person to whom to say hello
+          description: The name of the tea type for filtering
           required: false
           type: string
       responses:
@@ -57,6 +57,10 @@ definitions:
         type: string
       photo:
         type: string
+      tea:
+        type: array
+        items:
+          type: string
   ErrorResponse:
     required:
       - message
