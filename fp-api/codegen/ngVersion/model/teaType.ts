@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
-export interface ErrorResponse { 
-    message: string;
+export interface TeaType { 
+    id: string;
+    name?: string;
 }

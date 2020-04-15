@@ -10,6 +10,13 @@
  * Do not edit the class manually.
  */
 
-export interface ErrorResponse { 
-    message: string;
+export interface PathEstimationResponse { 
+    /**
+     * Time in minutes
+     */
+    time: number;
+    /**
+     * Length in meters
+     */
+    distance?: number;
 }

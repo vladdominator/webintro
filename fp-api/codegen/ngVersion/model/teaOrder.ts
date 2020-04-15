@@ -10,6 +10,13 @@
  * Do not edit the class manually.
  */
 
-export interface ErrorResponse { 
-    message: string;
+export interface TeaOrder { 
+    id: string;
+    takeOffId?: number;
+    teaType?: string;
+    time?: string;
+    /**
+     * queue | ready | taken
+     */
+    status?: string;
 }
