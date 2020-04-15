@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
-  version: "0.0.3"
-  title: Tea service
+  version: "0.0.4"
+  title: Forest service
 # during dev, should point to your local machine
 host: localhost:10010
 # basePath prefixes all resource paths 
@@ -18,13 +18,136 @@ consumes:
 produces:
   - application/json
 paths:
-  /teaspots:
+  /path/cities:
     # binds a127 app logic to a route
-    x-swagger-router-controller: hello_world
+    x-swagger-router-controller: cities
     get:
-      description: Returns 'Hello' to the caller
+      description: List of tea types to order
       # used as the method name of the controller
-      operationId: hello
+      operationId: listCities
+      parameters:
+        - name: page
+          in: query
+          description: Page to iterate, 1 is default
+          required: false
+          type: number             
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: array
+            items:
+                $ref: "#/definitions/City"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+
+  /path:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: cities
+    get:
+      description: List of tea types to order
+      # used as the method name of the controller
+      operationId: calculate time
+      parameters:
+        - name: from
+          in: query
+          description: City Id from 
+          required: true
+          type: number   
+        - name: to
+          in: query
+          description: City Id to 
+          required: true
+          type: number    
+        - name: day
+          in: query
+          description: Day to visit (e.g. monday is ok)
+          required: false
+          type: string      
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/PathEstimationResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+
+
+  /tea/orders:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: orders
+    get:
+      description: List of tea types to order
+      # used as the method name of the controller
+      operationId: listOrders
+      parameters:
+        - name: spotId
+          in: query
+          description: Tea spot to filter out
+          required: false
+          type: string
+        - name: startTime
+          in: query
+          description: Start time of orders updates
+          required: false
+          type: string  
+        - name: endTime
+          in: query
+          description: End time of orders updates
+          required: false
+          type: string   
+        - name: page
+          in: query
+          description: Page to iterate, 1 is default
+          required: false
+          type: number             
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: array
+            items:
+                $ref: "#/definitions/TeaOrder"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+
+
+  /tea/types:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: orders
+    get:
+      description: List of tea types to order
+      # used as the method name of the controller
+      operationId: listTeaTypes
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: array
+            items:
+                $ref: "#/definitions/TeaType"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+            
+  /tea/spots:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: orders
+    get:
+      description: List of tea cafe and tea spot places
+      # used as the method name of the controller
+      operationId: listSpots
       parameters:
         - name: tea
           in: query
@@ -57,10 +180,56 @@ definitions:
         type: string
       photo:
         type: string
-      tea:
+      teaTypes:
         type: array
+        description: Tea types that are available to order
         items:
           type: string
+  TeaOrder:
+    required:
+      - id
+    properties:
+      id:
+        type: string
+      takeOffId:
+        type: number
+      teaType:
+        type: string
+      time:
+        type: string
+      status:
+        description: queue | ready | taken
+        type: string
+       
+  TeaType:
+    required:
+      - id
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+        
+  City:
+    required:
+      - id
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+        
+  PathEstimationResponse:
+    required:
+      - time
+    properties:
+      time:
+        description: Time in minutes
+        type: number
+      distance:
+        description: Length in meters
+        type: number       
+        
   ErrorResponse:
     required:
       - message
