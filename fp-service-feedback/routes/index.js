@@ -9,9 +9,9 @@ const faker = require('faker')
 /* GET home page. */
 router.get('/', (req, res) => {
 	res.render('index', 
-	  	{ team:  'Whiteforest', 
-	  	  year: 2019,
-	  	  version: "0.2.1"
+	  	{ team:  'FP', 
+	  	  year: 2020,
+	  	  version: "0.2.2"
 	  	});
 
   

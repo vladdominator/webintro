@@ -8,6 +8,8 @@ const faker = require('faker')
 jsf.extend('chance', () => new chance.Chance());
 jsf.extend('faker', () => faker);
 
+var recentDays = 5;
+
 var schema = {
   "type": "array",
   "minItems": 10,
@@ -19,9 +21,14 @@ var schema = {
 	      "type": "string",
 	      "faker": "name.findName"
 	    },
-	    "email": {
+	    "date": {
 	      "type": "string",
-	      "faker": "internet.email"
+	      "faker": "date.recent"
+	    },
+	    "rank" : {
+	      "type": "integer", 
+	       "minimum": 3,
+  		   "maximum": 5
 	    },
 	    "age" : {
 	    	"type": "string", 
@@ -34,8 +41,9 @@ var schema = {
 	  },
 	  "required": [
 	    "name",
-	    "email",
-	    "age"
+	    "age", 
+	    "date",
+	    "rank"
 	   ]
 	  }
 };

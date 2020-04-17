@@ -1,7 +1,5 @@
-
-
-
 const express = require('express');
+const HandlebarsIntl = require('handlebars-intl');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
@@ -11,8 +9,6 @@ const exphbs  = require('express-handlebars');
 
 const routes = require('./routes/index');
 const feedback = require('./routes/feedback');
-const cafe = require('./routes/cafe');
-const api = require('./routes/api');
 const dates = require('./routes/dates');
 
 
@@ -22,14 +18,23 @@ const env = process.env.NODE_ENV || 'development';
 app.locals.ENV = env;
 app.locals.ENV_DEVELOPMENT = env == 'development';
 
-// view engine setup
-
-app.engine('handlebars', exphbs({
+// set up handlebar intl utils to format dates
+const hbs = exphbs.create({
   defaultLayout: 'main',
   partialsDir: ['views/partials/']
-}));
+})
+HandlebarsIntl.registerWith(hbs.handlebars)
+
+// view engine setup
+//exphbs
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
+
+app.engine('handlebars', hbs.engine);
+
+
+
+
 
 // app.use(favicon(__dirname + '/public/img/favicon.ico'));
 app.use(logger('dev'));
@@ -41,10 +46,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/feedback', feedback);
-app.use('/ads', cafe);
-app.use('/dates', dates);
-app.use('/api/v1', api);
+app.use('/feedback/reviews', feedback);
+app.use('/feedback/dates', dates);
 
 /// catch 404 and forward to error handler
 app.use((req, res, next) => {
