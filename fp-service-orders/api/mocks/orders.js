@@ -25,7 +25,8 @@ var util = require('util');
   we specify that in the exports of this module that 'hello' maps to the function named 'hello'
  */
 module.exports = {
-  hello: hello
+  listOrders: getOrders,
+  listTeaTypes: getTeaTypes
 };
 
 /*
@@ -34,13 +35,18 @@ module.exports = {
   Param 1: a handle to the request object
   Param 2: a handle to the response object
  */
-function hello(req, res) {
+function getOrders(req, res) {
   // variables defined in the Swagger document can be referenced using req.swagger.params.{parameter_name}
-  var name = req.swagger.params.tea.value || 'white';
-  var teaspot = { "name": "Black dragon", "geo": "1231231;1231231", "photo": "bd.jpg", 
-                  "tea": ["green", "black", "white", "red"]
-                }
+  var teaOrder = { 
+                  "id": "1234", "takeOffId": 230, "teaType": "green", 
+                  "time": "2020-05-01T12:00", "status": "ready"
+                  }
+  res.json([teaOrder]);
+}
 
-  // this sends back a JSON response which is a single string
-  res.json([teaspot]);
+function getTeaTypes(req, res) {
+  // variables defined in the Swagger document can be referenced using req.swagger.params.{parameter_name}
+  // var name = req.swagger.params.tea.value || 'white';
+  var teaType = { "id": "1234", "name": "green" }
+  res.json([teaType]);
 }
