@@ -5,9 +5,9 @@
     "version" : "0.0.4"
   },
   "servers" : [ {
-    "url" : "http://localhost:10011/v1"
+    "url" : "http://localhost:10011/api/v1"
   }, {
-    "url" : "https://localhost:10011/v1"
+    "url" : "https://localhost:10011/api/v1"
   } ],
   "paths" : {
     "/tea/orders" : {

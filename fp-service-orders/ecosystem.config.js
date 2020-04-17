@@ -10,13 +10,15 @@ module.exports = {
     max_memory_restart: '1G',
     env: {
       NODE_ENV: 'development',
-      PORT: 3000,
+      PORT: 10011,
       NODE_ENV: "development",
+      swagger_mockMode: true, 
       NODE_OPTIONS: "--inspect --inspect-port=9232"
     },
     env_production: {
       NODE_ENV: 'production',
-      PORT: 3000
+      swagger_mockMode: true, 
+      PORT: 10011
     }
   }],
 

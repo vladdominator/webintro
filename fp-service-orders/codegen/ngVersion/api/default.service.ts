@@ -29,7 +29,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class DefaultService {
 
-    protected basePath = 'http://localhost:10011/v1';
+    protected basePath = 'http://localhost:10011/api/v1';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
