@@ -1,1 +1,1 @@
-docker build -t fp/swagger-api .
+docker build -t fp/swagger-api-orders .

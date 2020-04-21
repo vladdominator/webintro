@@ -1,5 +1,5 @@
 {
-  "name": "fp-service-orders",
+  "name": "fp-api-orders",
   "version": "0.0.1",
   "private": true,
   "description": "OrdersAPI",

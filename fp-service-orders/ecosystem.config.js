@@ -1,6 +1,6 @@
 module.exports = {
   apps : [{
-    name: 'OrdersAPI',
+    name: 'fp-orders',
     script: 'npm',
     // Options reference: https://pm2.io/doc/en/runtime/reference/ecosystem-file/
     args: 'start',
