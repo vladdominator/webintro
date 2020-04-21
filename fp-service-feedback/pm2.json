@@ -1,6 +1,6 @@
 {
   "apps": [{
-    "name": "fp-express",
+    "name": "fp-feedback",
     "script": "./bin/www",
     "instances": 1,
     "exec_mode": "cluster",

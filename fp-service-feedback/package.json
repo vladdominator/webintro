@@ -1,5 +1,5 @@
 {
-  "name": "fpfeedback-express",
+  "name": "fp-service-feedback",
   "version": "0.0.1",
   "private": true,
   "main": "app.js",

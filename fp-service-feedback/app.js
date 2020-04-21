@@ -23,7 +23,11 @@ const hbs = exphbs.create({
   defaultLayout: 'main',
   partialsDir: ['views/partials/']
 })
+
 HandlebarsIntl.registerWith(hbs.handlebars)
+
+
+
 
 // view engine setup
 //exphbs

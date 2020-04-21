@@ -14,7 +14,10 @@ var selectDeliveryDatesSchema = {
   "maxItems": 5,
   "items": {
 	      "type": "string",
-	      "chance":  "weekday" 
+        "faker": { 
+          "date.recent": 10
+        },
+        "uniqueItems": true
    }
 };
 

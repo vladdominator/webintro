@@ -1,1 +1,1 @@
-docker build -t fp/express .
+docker build -t fp/feedback .
