@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 	res.render('index', 
 	  	{ team:  'FP', 
 	  	  year: 2020,
-	  	  version: "0.2.2"
+	  	  version: "0.2.3"
 	  	});
 
   

@@ -1,4 +1,3 @@
-VERSION=v0.35.0 # use the latest release version from https://github.com/google/cadvisor/releases
 sudo docker run \
   --volume=/:/rootfs:ro \
   --volume=/var/run:/var/run:rw \
@@ -7,4 +6,4 @@ sudo docker run \
   --publish=8080:8080 \
   --detach=true \
   --name=cadvisor \
-  google/cadvisor:$VERSION
+  google/cadvisor
