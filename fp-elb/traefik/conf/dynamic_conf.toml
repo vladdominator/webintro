@@ -2,22 +2,22 @@
 [http]
   [http.routers]
     # Define a connection between requests and services
-    [http.routers.express]
+    [http.routers.fp-feedback]
       entryPoints = ["web"]
       rule = "PathPrefix(`/feedback`)"
-      service = "express-feedback"
+      service = "fp-feedback"
 
-    [http.routers.swagger-orders]
+    [http.routers.fp-orders]
       entryPoints = ["web"]
       rule = "PathPrefix(`/api/v1/tea`)"
-      service = "swagger-orders"
+      service = "fp-orders"
 
   [http.services]
     # Define how to reach an existing service on our infrastructure
-    [http.services.express-feedback.loadBalancer]
-      [[http.services.express-feedback.loadBalancer.servers]]
-        url = "http://127.0.0.1:3000/"
+    [http.services.fp-feedback.loadBalancer]
+      [[http.services.fp-feedback.loadBalancer.servers]]
+        url = "http://172.17.0.1:3000/"
 
-    [http.services.swagger-orders.loadBalancer]
-      [[http.services.swagger-orders.loadBalancer.servers]]
-        url = "http://127.0.0.1:10011/"
+    [http.services.fp-orders.loadBalancer]
+      [[http.services.fp-orders.loadBalancer.servers]]
+        url = "http://172.17.0.1:10011/"
