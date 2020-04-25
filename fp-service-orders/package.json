@@ -13,6 +13,7 @@
     "express-healthcheck": "^0.1.0",
     "path": "^0.12.7",
     "swagger-express-mw": "^0.1.0",
+    "swagger-stats": "^0.95.17",
     "winston": "^3.2.1"
   },
   "devDependencies": {
