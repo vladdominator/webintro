@@ -1,3 +1,6 @@
+// Use autorestart if in Docker 
+// Use instances=1 if in Docker 
+
 module.exports = {
   apps : [{
     name: 'fp-orders',
@@ -5,11 +8,13 @@ module.exports = {
     // Options reference: https://pm2.io/doc/en/runtime/reference/ecosystem-file/
     args: 'start',
     instances: 1,
-    autorestart: true,
     watch: false,
     max_memory_restart: '1G',
+    instance_id_env: "NODE_APP_INSTANCE",
+    error_file    : "/var/log/fp-orders.log",
+    out_file    : "/var/log/fp-orders.log",
+    merge_logs: true, 
     env: {
-      NODE_ENV: 'development',
       PORT: 10011,
       NODE_ENV: "development",
       swagger_mockMode: true, 
@@ -18,6 +23,8 @@ module.exports = {
     env_production: {
       NODE_ENV: 'production',
       swagger_mockMode: true, 
+      autorestart: false,
+      instances: 1,
       PORT: 10011
     }
   }],

@@ -14,6 +14,9 @@ var config = {
 // to serve docs
 app.use(express.static(path.join(__dirname, 'public')));
 
+// to expose health check 
+app.use('/health', require('express-healthcheck')());
+
 
 SwaggerExpress.create(config, function(err, swaggerExpress) {
   if (err) { throw err; }

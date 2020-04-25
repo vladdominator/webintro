@@ -1,6 +1,6 @@
 
-// You would never use autorestart in Docker, please remain false 
-// Remain a single pm2 instance in Docker, due to not interfere /health endpoint 
+// Use autorestart if in Docker 
+// Use instances=1 if in Docker 
 module.exports = {
   "apps": [{
     "name": "fp-feedback",
