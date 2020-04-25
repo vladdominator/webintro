@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const reqlib = require('app-root-path').require;
+const logger = reqlib('logger');
 
 const jsf = require('json-schema-faker');
 const util = require('util')
@@ -52,7 +54,7 @@ var schema = {
 router.get('/', (req, res) => {
 
   jsf.resolve(schema).then(sample => {
-  	   console.log(util.inspect(sample, 
+  	   logger.debug(util.inspect(sample, 
   	   	{showHidden: false, depth: null}));
 	   
 	   res.render('feedback', 

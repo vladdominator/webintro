@@ -2,7 +2,8 @@ const express = require('express');
 const HandlebarsIntl = require('handlebars-intl');
 const path = require('path');
 const favicon = require('serve-favicon');
-const logger = require('morgan');
+const morganLogger = require('morgan');
+const logger = require('./logger');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const exphbs  = require('express-handlebars');
@@ -10,7 +11,6 @@ const exphbs  = require('express-handlebars');
 const routes = require('./routes/index');
 const feedback = require('./routes/feedback');
 const dates = require('./routes/dates');
-
 
 const app = express();
 
@@ -33,9 +33,9 @@ app.set('view engine', 'handlebars');
 
 app.engine('handlebars', hbs.engine);
 
-
 // app.use(favicon(__dirname + '/public/img/favicon.ico'));
-app.use(logger('dev'));
+app.use(morganLogger("combined", { "stream": logger.stream }));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true

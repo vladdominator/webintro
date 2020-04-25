@@ -1,12 +1,15 @@
 const express = require('express');
 const router = express.Router();
+const reqlib = require('app-root-path').require;
+const logger = reqlib('logger');
+const os = require("os");
+const hostname = os.hostname();
 
 const util = require('util')
 const chance = require('chance')
 const faker = require('faker')
 
 const packageGenVersion = require('../lib/version.js') 
-const pm_id = process.env.pm_id || 0
 const instance_id = process.env.NODE_APP_INSTANCE || 0 
 
 
@@ -16,8 +19,8 @@ router.get('/', (req, res) => {
 	  	{ team:  'FP', 
 	  	  year: 2020,
 	  	  version: packageGenVersion,
-	  	  id: pm_id,
-	  	  instance: instance_id
+	  	  instance: instance_id,
+	  	  host: hostname 
 	  	});
 
   
