@@ -8,13 +8,18 @@
   "license": "",
   "main": "app.js",
   "dependencies": {
+    "app-root-path": "^3.0.0",
     "express": "^4.12.3",
+    "express-healthcheck": "^0.1.0",
     "path": "^0.12.7",
-    "swagger-express-mw": "^0.1.0"
+    "swagger-express-mw": "^0.1.0",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
+    "genversion": "^2.2.1",
     "should": "^7.1.0",
-    "supertest": "^1.0.0"
+    "supertest": "^1.0.0",
+    "versiony": "^2.0.1"
   },
   "scripts": {
     "start": "swagger_mockMode=true node app.js",

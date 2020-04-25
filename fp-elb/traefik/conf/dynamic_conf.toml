@@ -26,5 +26,10 @@
         url = "http://172.17.0.1:3001/"  
 
     [http.services.fp-orders.loadBalancer]
+      [http.services.fp-orders.loadBalancer.healthCheck]
+        path = "/health"
+        interval = "5s"
+        timeout = "3s"
+
       [[http.services.fp-orders.loadBalancer.servers]]
         url = "http://172.17.0.1:10011/"
