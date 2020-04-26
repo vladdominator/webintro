@@ -3,7 +3,7 @@
 
     <xsl:template match="/">
         <div>
-            <h1>Stats by this <xsl:value-of select="/orders/@time"/></h1>
+            <h1>Statsß</h1>
                 <!-- //student[count(. |  key('students-by-group', @group)[1] ) = 1 -->
                 <!-- //student[@group=9] -->
                 <h2>Total orders:<xsl:value-of select="count(//order)"/></h2>

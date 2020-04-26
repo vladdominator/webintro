@@ -200,72 +200,12 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "type" : "object",
-                    "properties" : {
-                      "order" : {
-                        "type" : "string"
-                      },
-                      "date" : {
-                        "type" : "string",
-                        "xml" : {
-                          "attribute" : true
-                        }
-                      },
-                      "product" : {
-                        "type" : "string",
-                        "xml" : {
-                          "attribute" : true
-                        }
-                      },
-                      "category" : {
-                        "type" : "string",
-                        "xml" : {
-                          "attribute" : true
-                        }
-                      }
-                    },
-                    "xml" : {
-                      "name" : "order",
-                      "wrapped" : true
-                    }
-                  }
+                  "type" : "string"
                 }
               },
               "application/xml" : {
                 "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "type" : "object",
-                    "properties" : {
-                      "order" : {
-                        "type" : "string"
-                      },
-                      "date" : {
-                        "type" : "string",
-                        "xml" : {
-                          "attribute" : true
-                        }
-                      },
-                      "product" : {
-                        "type" : "string",
-                        "xml" : {
-                          "attribute" : true
-                        }
-                      },
-                      "category" : {
-                        "type" : "string",
-                        "xml" : {
-                          "attribute" : true
-                        }
-                      }
-                    },
-                    "xml" : {
-                      "name" : "order",
-                      "wrapped" : true
-                    }
-                  }
+                  "type" : "string"
                 }
               }
             }
@@ -349,6 +289,44 @@
           "name" : {
             "type" : "string"
           }
+        }
+      },
+      "Orders" : {
+        "type" : "array",
+        "xml" : {
+          "wrapped" : true
+        },
+        "items" : {
+          "$ref" : "#/components/schemas/Order"
+        }
+      },
+      "Order" : {
+        "type" : "object",
+        "properties" : {
+          "order" : {
+            "type" : "string"
+          },
+          "date" : {
+            "type" : "string",
+            "xml" : {
+              "attribute" : true
+            }
+          },
+          "product" : {
+            "type" : "string",
+            "xml" : {
+              "attribute" : true
+            }
+          },
+          "category" : {
+            "type" : "string",
+            "xml" : {
+              "attribute" : true
+            }
+          }
+        },
+        "xml" : {
+          "name" : "order"
         }
       },
       "ErrorResponse" : {

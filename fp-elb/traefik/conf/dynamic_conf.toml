@@ -23,7 +23,7 @@
       [[http.services.fp-feedback.loadBalancer.servers]]
         url = "http://172.17.0.1:3000/"
       [[http.services.fp-feedback.loadBalancer.servers]]
-        url = "http://172.17.0.1:3001/"  
+        url = "http://172.17.0.1:3001/"
 
     [http.services.fp-orders.loadBalancer]
       [http.services.fp-orders.loadBalancer.healthCheck]

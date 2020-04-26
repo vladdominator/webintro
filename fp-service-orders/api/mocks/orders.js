@@ -12,6 +12,11 @@
  */
 var util = require('util');
 var builder = require('xmlbuilder');
+const jsf = require('json-schema-faker');
+const chance = require('chance')
+const faker = require('faker')
+jsf.extend('chance', () => new chance.Chance());
+jsf.extend('faker', () => faker);
 
 /*
  Once you 'require' a module you can reference the things that it exports.  These are defined in module.exports.
@@ -28,6 +33,7 @@ var builder = require('xmlbuilder');
 module.exports = {
   listOrders: getOrders,
   listTeaTypes: getTeaTypes,
+  listSpots: getSpots, 
   stats: getStats
 };
 
@@ -53,6 +59,19 @@ function getTeaTypes(req, res) {
   res.json([teaType]);
 }
 
+
+function getSpots(req, res) {
+  // variables defined in the Swagger document can be referenced using req.swagger.params.{parameter_name}
+  // var name = req.swagger.params.tea.value || 'white';
+  var spot = { 
+      "name": faker.company.companyName(), 
+      "geo": `${faker.address.longitude()};${faker.address.latitude()}`, 
+      "photo":"http://capl.washjeff.edu/2/l/5069.jpg", 
+      "teaTypes": ["green", "black"] }
+  res.json([spot]);
+}
+
+
 function getStats(req, res) {
   // variables defined in the Swagger document can be referenced using req.swagger.params.{parameter_name}
   // var name = req.swagger.params.tea.value || 'white';
@@ -70,5 +89,6 @@ function getStats(req, res) {
   .end({ pretty: true });
 
   res.type('application/xml');
+  res.set('x-template', 'orders.xsl')
   res.send(doc.toString());
 }
