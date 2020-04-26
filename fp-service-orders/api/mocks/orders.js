@@ -11,6 +11,7 @@
   It is a good idea to list the modules that your application depends on in the package.json in the project root
  */
 var util = require('util');
+var builder = require('xmlbuilder');
 
 /*
  Once you 'require' a module you can reference the things that it exports.  These are defined in module.exports.
@@ -26,7 +27,8 @@ var util = require('util');
  */
 module.exports = {
   listOrders: getOrders,
-  listTeaTypes: getTeaTypes
+  listTeaTypes: getTeaTypes,
+  stats: getStats
 };
 
 /*
@@ -49,4 +51,24 @@ function getTeaTypes(req, res) {
   // var name = req.swagger.params.tea.value || 'white';
   var teaType = { "id": "1234", "name": "green" }
   res.json([teaType]);
+}
+
+function getStats(req, res) {
+  // variables defined in the Swagger document can be referenced using req.swagger.params.{parameter_name}
+  // var name = req.swagger.params.tea.value || 'white';
+  var doc = builder.create('orders')
+    .ele('order')
+      .att('date', '2020-04-01T17:40')
+      .att('product', 'Earl grey')
+      .att('category', 'black')
+      .up()
+    .ele('order')
+      .att('date', '2020-04-01T17:40')
+      .att('product', 'Earl grey')
+      .att('category', 'black')
+      .up()  
+  .end({ pretty: true });
+
+  res.type('application/xml');
+  res.send(doc.toString());
 }

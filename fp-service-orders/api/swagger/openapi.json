@@ -54,6 +54,14 @@
                     "$ref" : "#/components/schemas/TeaOrder"
                   }
                 }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/TeaOrder"
+                  }
+                }
               }
             }
           },
@@ -61,6 +69,11 @@
             "description" : "Error",
             "content" : {
               "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/xml" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/ErrorResponse"
                 }
@@ -86,6 +99,14 @@
                     "$ref" : "#/components/schemas/TeaType"
                   }
                 }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/TeaType"
+                  }
+                }
               }
             }
           },
@@ -93,6 +114,11 @@
             "description" : "Error",
             "content" : {
               "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/xml" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/ErrorResponse"
                 }
@@ -126,6 +152,14 @@
                     "$ref" : "#/components/schemas/TeaSpot"
                   }
                 }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/TeaSpot"
+                  }
+                }
               }
             }
           },
@@ -133,6 +167,118 @@
             "description" : "Error",
             "content" : {
               "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-swagger-router-controller" : "orders"
+    },
+    "/tea/stats" : {
+      "get" : {
+        "description" : "List of tea cafe and tea spot places",
+        "operationId" : "stats",
+        "parameters" : [ {
+          "name" : "date",
+          "in" : "query",
+          "description" : "Date to get the stats",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "object",
+                    "properties" : {
+                      "order" : {
+                        "type" : "string"
+                      },
+                      "date" : {
+                        "type" : "string",
+                        "xml" : {
+                          "attribute" : true
+                        }
+                      },
+                      "product" : {
+                        "type" : "string",
+                        "xml" : {
+                          "attribute" : true
+                        }
+                      },
+                      "category" : {
+                        "type" : "string",
+                        "xml" : {
+                          "attribute" : true
+                        }
+                      }
+                    },
+                    "xml" : {
+                      "name" : "order",
+                      "wrapped" : true
+                    }
+                  }
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "object",
+                    "properties" : {
+                      "order" : {
+                        "type" : "string"
+                      },
+                      "date" : {
+                        "type" : "string",
+                        "xml" : {
+                          "attribute" : true
+                        }
+                      },
+                      "product" : {
+                        "type" : "string",
+                        "xml" : {
+                          "attribute" : true
+                        }
+                      },
+                      "category" : {
+                        "type" : "string",
+                        "xml" : {
+                          "attribute" : true
+                        }
+                      }
+                    },
+                    "xml" : {
+                      "name" : "order",
+                      "wrapped" : true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              },
+              "application/xml" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/ErrorResponse"
                 }

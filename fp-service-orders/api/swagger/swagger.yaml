@@ -17,6 +17,7 @@ consumes:
 # format of the responses to the client (Accepts)
 produces:
   - application/json
+  - application/xml
 paths:
   /tea/orders:
     # binds a127 app logic to a route
@@ -105,6 +106,32 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+            
+  /tea/stats:
+    x-swagger-router-controller: orders 
+    get:
+      description: List of tea cafe and tea spot places
+      # used as the method name of the controller
+      operationId: stats
+      parameters:
+        - name: date
+          in: query
+          description: Date to get the stats
+          required: false
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+              type: string
+              #$ref: "#/definitions/Orders"
+                      
+                    
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"        
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
@@ -148,6 +175,34 @@ definitions:
         type: string
       name:
         type: string
+        
+  Orders:
+    xml:
+      wrapped: true
+    type: array
+    items:
+      "$ref": "#/definitions/Order"
+  
+  Order:
+    xml: 
+      name : order
+    properties:
+      order:
+        type: string
+      date:
+        type: string
+        xml:
+          attribute: true
+      product:
+        type: string
+        xml:
+          attribute: true
+      category:
+        type: string
+        xml:
+          attribute: true
+        
+        
         
   ErrorResponse:
     required:
