@@ -3,18 +3,18 @@
 
     <xsl:template match="/">
         <div>
-            <h1>Statsß</h1>
+            <h3>Stats</h3>
                 <!-- //student[count(. |  key('students-by-group', @group)[1] ) = 1 -->
                 <!-- //student[@group=9] -->
-                <h2>Total orders:<xsl:value-of select="count(//order)"/></h2>
+                <h4>Total orders:<xsl:value-of select="count(//order)"/></h4>
 
                 <xsl:apply-templates select="//order[generate-id(.) = generate-id(key('orders-by-category', @category)[1] )]"/>
         </div>
     </xsl:template>
 
     <xsl:template match="order">
-        <h2>Tea <xsl:value-of select="@category"/></h2>
-        <h3>Total: <xsl:value-of select="count(//order[@category = current()/@category])"/></h3>
+        <h5>Tea <xsl:value-of select="@category"/></h5>
+        <h6>Total: <xsl:value-of select="count(//order[@category = current()/@category])"/></h6>
         <ul>
             <xsl:apply-templates select="key('orders-by-category', @category)" mode="grouping"/>
         </ul>

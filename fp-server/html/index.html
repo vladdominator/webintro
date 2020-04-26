@@ -11,13 +11,18 @@
 </style>
 </head>
 <body>
-	<header>
-		<h1>Tea service</h1>
-		<h2>Tea on demand</h2>
-	</header>
-
-    <!--#include virtual="/orders.xml" -->
-
-	<footer><a href="/atom.xml">/atom.xml</a>, <a href="/lua/plain">/lua/plain</a>, <a href="/lua/greetings?message=hi">/lua/greetings?message=hi</a></footer>
+    <header>
+        <h1>Example of Nginx service</h1>
+        <p>We use <a href="/spots">/spots</a> as LuaJIT template, and <a href="/stats">/stats</a></p> 
+    </header>
+    <main>
+        <h3>Spots list</h3>
+        <!--#include virtual="/spots" -->
+        <!--#include virtual="/stats" -->
+  
+    </main>
+    <footer>
+        Take a look on <a href="/news/atom.xml">/news/atom.xml</a> as XSLT processing in nginx</p>
+    </footer>
 </body>
 </html>
