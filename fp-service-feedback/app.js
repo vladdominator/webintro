@@ -83,4 +83,10 @@ app.use((err, req, res, next) => {
     });
 });
 
+// Testing App error after 3 sec
+/*  
+ setTimeout((function() {
+    return process.exit(22);
+}), 3000); */
+
 module.exports = app;

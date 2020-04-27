@@ -7,6 +7,10 @@
   "author": "",
   "license": "",
   "main": "app.js",
+    "scripts": {
+    "start": "swagger_mockMode=true node app.js",
+    "test": "swagger project test"
+  },
   "dependencies": {
     "app-root-path": "^3.0.0",
     "chance": "^1.1.4",
@@ -25,9 +29,5 @@
     "should": "^7.1.0",
     "supertest": "^1.0.0",
     "versiony": "^2.0.1"
-  },
-  "scripts": {
-    "start": "swagger_mockMode=true node app.js",
-    "test": "swagger project test"
   }
 }

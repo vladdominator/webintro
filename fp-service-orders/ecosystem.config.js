@@ -11,8 +11,8 @@ module.exports = {
     watch: false,
     max_memory_restart: '1G',
     instance_id_env: "NODE_APP_INSTANCE",
-    error_file    : "/var/log/fp-orders.log",
-    out_file    : "/var/log/fp-orders.log",
+    error_file    : "logs/fp-orders.log",
+    out_file    : "logs/fp-orders.log",
     merge_logs: true, 
     env: {
       PORT: 10011,

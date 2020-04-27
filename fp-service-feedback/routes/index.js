@@ -9,7 +9,7 @@ const util = require('util')
 const chance = require('chance')
 const faker = require('faker')
 
-const packageGenVersion = require('../lib/version.js') 
+const packageGenVersion = reqlib('lib/version.js') 
 const instance_id = process.env.NODE_APP_INSTANCE || 0 
 
 

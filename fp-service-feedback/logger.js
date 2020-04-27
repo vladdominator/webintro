@@ -6,7 +6,7 @@ const logfile = reqlib('ecosystem.config.js').apps[0].out_file || `${appRoot}/lo
 
 var options = {
   console: {
-    level: 'debug',
+    level: 'info',
     handleExceptions: true,
     json: false,
     colorize: true,

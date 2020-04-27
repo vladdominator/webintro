@@ -1,10 +1,10 @@
 {
   "name": "fp-service-feedback",
-  "version": "0.2.4",
+  "version": "0.4.4",
   "private": true,
   "main": "app.js",
   "scripts": {
-    "start": "npm run build && node ./bin/www",
+    "start": "node ./bin/www",
     "build": "node version.js",
     "test": "mocha --recursive test",
     "test:coverage": "nyc npm test",

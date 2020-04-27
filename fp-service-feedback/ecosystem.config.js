@@ -7,9 +7,10 @@ module.exports = {
     "script": "./bin/www",
     "exec_mode": "cluster",
     "watch": false,
+    "instances": 1,
     "instance_id_env": "NODE_APP_INSTANCE",
-    "error_file"    : "/var/log/fp-feedback.log",
-    "out_file"    : "/var/log/fp-feedback.log",
+    "error_file"    : "logs/fp-feedback.log",
+    "out_file"    : "logs/fp-feedback.log",
     "merge_logs": true, 
     "env": {
       "PORT": 3000,
@@ -19,7 +20,6 @@ module.exports = {
     "env_production" : {
       "PORT": 3000,
       "NODE_ENV": "production",
-      "instances": 1,
       "autorestart": false
     }
   }]
