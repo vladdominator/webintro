@@ -1,0 +1,54 @@
+version: '3.7'
+services:
+  traefik:
+    image: traefik:2.2
+    # command: --web --api --docker --docker.domain=traefik.test --logLevel=DEBUG
+    command: >
+      --providers.docker
+      --providers.docker.exposedbydefault=false
+      --entryPoints.http.address=":80"
+      --accesslog
+      --log.level=DEBUG
+      --api=true
+      --api.dashboard=true
+    depends_on:
+      - "fp-orders"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./fp-elb/traefik/conf:/toml
+      - ./fp-elb/traefik/traefik.toml:/etc/traefik/traefik.toml
+    networks:
+      private:
+      public:
+
+  fp-orders:
+    build:
+      context: fp-service-orders
+      dockerfile: Dockerfile
+    networks:
+      private:
+        # the aliases are not required, but are useful if the applications want to internally
+        # reference each other by host name
+        aliases:
+        - "fp-orders"
+      public:
+    #ports:    
+    #  - "10011:10011"  
+    labels:
+      - "traefik.http.routers.fp-orders.entrypoints=web"
+      - "traefik.http.routers.fp-orders.rule=PathPrefix(`/api/v1/tea`)"
+      - "traefik.http.services.fp-orders.loadbalancer.server.port=10011"
+      - "traefik.backend=fp-orders"
+      - "traefik.port=10011"
+      - "traefik.backend.healthcheck.path=/health"
+      - "traefik.enable=true"
+
+networks:
+  # everything that is *only* on "internal network" cannot talk to WAN
+  private:
+    internal: true
+  # add this network to a container to make it talk to the rest of the world
+  public:

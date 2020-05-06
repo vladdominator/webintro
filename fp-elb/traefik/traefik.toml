@@ -30,12 +30,13 @@ defaultEntryPoints = ["web"]
     address = ":8080" 
 
 
+# docker provider is rewritten by docker-compose and command
+# [providers]
+#  [providers.file]
+#    directory = "/toml/"  
+#    watch = true
 [providers]
-  # Enable the file provider to define routers / middlewares / services in file
-  [providers.file]
-    directory = "/toml/"  
-    watch = true
-
+   [providers.docker]
 
 ################################################################
 # Traefik logs configuration
