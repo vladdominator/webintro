@@ -1,3 +1,9 @@
+# WARNING
+# This is used only in direct docker run with uncommented provider in traefik.toml
+# if used in docker-compose the same parameters needs to be duplicated in labels
+# so THIS IS NOT USED in docker-compose mode
+
+
 # http routing section
 [http]
   [http.routers]

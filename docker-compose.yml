@@ -1,6 +1,6 @@
 version: '3.7'
 services:
-  traefik:
+  fp-elb:
     image: traefik:2.2
     # command: --web --api --docker --docker.domain=traefik.test --logLevel=DEBUG
     command: >
@@ -22,12 +22,14 @@ services:
       - ./fp-elb/traefik/traefik.toml:/etc/traefik/traefik.toml
     networks:
       private:
+        aliases:
+          - "fp-elb"
       public:
 
   fp-orders:
     build:
       context: fp-service-orders
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile 
     networks:
       private:
         # the aliases are not required, but are useful if the applications want to internally
@@ -45,6 +47,58 @@ services:
       - "traefik.port=10011"
       - "traefik.backend.healthcheck.path=/health"
       - "traefik.enable=true"
+
+  fp-feedback:
+    build:
+      context: fp-service-feedback
+      dockerfile: Dockerfile
+    networks:
+      private:
+        # the aliases are not required, but are useful if the applications want to internally
+        # reference each other by host name
+        aliases:
+        - "fp-feedback"
+      public:
+    #ports:    
+    #  - "10011:10011"  
+    labels:
+      - "traefik.http.routers.fp-feedback.entrypoints=web"
+      - "traefik.http.routers.fp-feedback.rule=PathPrefix(`/feedback, `/atom`)"
+      - "traefik.http.services.fp-feedback.loadbalancer.server.port=3000"
+      - "traefik.backend=fp-feedback"
+      - "traefik.port=3000"
+      - "traefik.backend.healthcheck.path=/health"
+      - "traefik.enable=true"  
+
+  fp-nginx:
+    build:
+      context: fp-server
+      dockerfile: Dockerfile
+    depends_on:
+      - "fp-elb"   
+    networks:
+      private:
+        # the aliases are not required, but are useful if the applications want to internally
+        # reference each other by host name
+        aliases:
+        - "fp-nginx"
+      public:
+    ports:    
+      - "9000:80"  
+    labels:
+      - "traefik.http.routers.fp-nginx.entrypoints=web"
+      - "traefik.http.routers.fp-nginx.rule=PathPrefix(`/`)"
+      - "traefik.http.services.fp-nginx.loadbalancer.server.port=80"
+      - "traefik.backend=fp-nginx"
+      - "traefik.port=80"
+      #- "traefik.backend.healthcheck.path=/health"
+      - "traefik.enable=true"
+    volumes:
+      - ./fp-server/html:/usr/local/openresty/nginx/html
+      - ./fp-server/templates:/usr/local/openresty/nginx/templates
+      - ./fp-server/conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf 
+      # this differs from a normal -v folder mount to maintaine with/out traefik 
+      - ./fp-server/conf/conf.d/default-traefik.conf:/etc/nginx/conf.d/default.conf
 
 networks:
   # everything that is *only* on "internal network" cannot talk to WAN
