@@ -1,0 +1,3 @@
+[submodule "lerna-typescript-cra-uilib-starter"]
+	path = lerna-typescript-cra-uilib-starter
+	url = https://github.com/shnydercom/lerna-typescript-cra-uilib-starter

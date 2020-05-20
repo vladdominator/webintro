@@ -63,7 +63,7 @@ services:
     #  - "10011:10011"  
     labels:
       - "traefik.http.routers.fp-feedback.entrypoints=web"
-      - "traefik.http.routers.fp-feedback.rule=PathPrefix(`/feedback, `/atom`)"
+      - "traefik.http.routers.fp-feedback.rule=PathPrefix(`/feedback`, `/atom`)"
       - "traefik.http.services.fp-feedback.loadbalancer.server.port=3000"
       - "traefik.backend=fp-feedback"
       - "traefik.port=3000"
