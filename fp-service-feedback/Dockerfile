@@ -18,4 +18,4 @@ COPY . .
 
 EXPOSE 3000
 #CMD [ "node", "./bin/www" ]
-CMD [ "pm2", "update", "&&", "pm2-runtime", "start", "ecosystem.config.js", "--env", "production" ]
+CMD [ "pm2-runtime", "start", "ecosystem.config.js", "--env", "production" ]
