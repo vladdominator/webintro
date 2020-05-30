@@ -26,5 +26,5 @@ jobs:
           command: |
             TAG="0.1.${CIRCLE_BUILD_NUM}"
             docker-compose build 
-            docker login -u ${GITLAB_CR_NAME}  -p ${GITLAB_CR_TOKEN}  registry.gitlab.com
+            echo $GITLAB_CR_TOKEN | docker login -u $GITLAB_CR_NAME  --password-stdin registry.gitlab.com
             docker-compose push
