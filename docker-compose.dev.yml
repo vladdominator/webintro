@@ -96,13 +96,12 @@ services:
       - "traefik.port=80"
       #- "traefik.backend.healthcheck.path=/health"
       - "traefik.enable=true"
-    # volumes are commented due to manual copy in circle config.xml
-    # volumes:
-      # - ./fp-server/html:/usr/local/openresty/nginx/html
-      # - ./fp-server/templates:/usr/local/openresty/nginx/templates
-      # - ./fp-server/conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf 
+    volumes:
+      - ./fp-server/html:/usr/local/openresty/nginx/html
+      - ./fp-server/templates:/usr/local/openresty/nginx/templates
+      - ./fp-server/conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf 
       # this differs from a normal -v folder mount to maintaine with/out traefik 
-      # - ./fp-server/conf/conf.d/default-traefik.conf:/etc/nginx/conf.d/default.conf
+      - ./fp-server/conf/conf.d/default-traefik.conf:/etc/nginx/conf.d/default.conf
 
 networks:
   # everything that is *only* on "internal network" cannot talk to WAN
