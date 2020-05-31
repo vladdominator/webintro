@@ -6,6 +6,7 @@ services:
     command: >
       --providers.docker
       --providers.docker.exposedbydefault=false
+      --providers.docker.constraints=Label(`constraints.zone`, `fp`)
       --entryPoints.http.address=":80"
       --accesslog
       --log.level=DEBUG
@@ -14,8 +15,8 @@ services:
     depends_on:
       - "fp-orders"
     ports:
-      - "80:80"
-      - "8080:8080"
+      - "9800:80"
+      - "9801:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./fp-elb/traefik/conf:/toml
@@ -38,9 +39,10 @@ services:
         aliases:
         - "fp-orders"
       public:
-    #ports:    
-    #  - "10011:10011"  
+    ports:    
+      - "9803-9805:10011"  
     labels:
+      - "constraints.zone=fp"
       - "traefik.http.routers.fp-orders.entrypoints=web"
       - "traefik.http.routers.fp-orders.rule=PathPrefix(`/api/v1/tea`)"
       - "traefik.http.services.fp-orders.loadbalancer.server.port=10011"
@@ -61,8 +63,8 @@ services:
         aliases:
         - "fp-feedback"
       public:
-    #ports:    
-    #  - "10011:10011"  
+    ports:    
+      - "9806-9808:3000"  
     labels:
       - "traefik.http.routers.fp-feedback.entrypoints=web"
       - "traefik.http.routers.fp-feedback.rule=PathPrefix(`/feedback`, `/atom`)"
@@ -87,7 +89,7 @@ services:
         - "fp-nginx"
       public:
     ports:    
-      - "9000:80"  
+      - "9802:80"  
     labels:
       - "traefik.http.routers.fp-nginx.entrypoints=web"
       - "traefik.http.routers.fp-nginx.rule=PathPrefix(`/`)"
