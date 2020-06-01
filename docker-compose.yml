@@ -1,26 +1,31 @@
 version: '3.7'
 services:
   fp-elb:
-    image: traefik:2.2
+    build:
+      context: fp-elb
+      dockerfile: Dockerfile
+    image: registry.gitlab.com/aperez4/fp/fp-elb:latest
+    # image: traefik:2.2
     # command: --web --api --docker --docker.domain=traefik.test --logLevel=DEBUG
     command: >
       --providers.docker
-      --providers.docker.exposedbydefault=false
-      --providers.docker.constraints=Label(`constraints.zone`, `fp`)
+      --providers.docker.exposedbydefault=true
+      --providers.docker.constraints="Label('constraints.zone', 'fp')"
       --entryPoints.http.address=":80"
       --accesslog
       --log.level=DEBUG
+      --api.insecure=true
       --api=true
       --api.dashboard=true
-    depends_on:
-      - "fp-orders"
     ports:
       - "9800:80"
       - "9801:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./fp-elb/traefik/conf:/toml
-      - ./fp-elb/traefik/traefik.toml:/etc/traefik/traefik.toml
+     #  - ./fp-elb/traefik/conf:/toml
+     #  - ./fp-elb/traefik/traefik.toml:/etc/traefik/traefik.toml
+    labels:
+      - "constraints.zone=fp"
     networks:
       private:
         aliases:
@@ -66,6 +71,8 @@ services:
     ports:    
       - "9806-9808:3000"  
     labels:
+      # comment out for test only 
+      # - "constraints.zone=fp"
       - "traefik.http.routers.fp-feedback.entrypoints=web"
       - "traefik.http.routers.fp-feedback.rule=PathPrefix(`/feedback`, `/atom`)"
       - "traefik.http.services.fp-feedback.loadbalancer.server.port=3000"
@@ -91,6 +98,7 @@ services:
     ports:    
       - "9802:80"  
     labels:
+      - "constraints.zone=fp"
       - "traefik.http.routers.fp-nginx.entrypoints=web"
       - "traefik.http.routers.fp-nginx.rule=PathPrefix(`/`)"
       - "traefik.http.services.fp-nginx.loadbalancer.server.port=80"
