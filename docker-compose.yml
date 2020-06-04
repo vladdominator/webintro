@@ -81,7 +81,7 @@ services:
   fp-nginx:
     build:
       context: fp-server
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile
     image: registry.gitlab.com/aperez4/fp/fp-nginx:latest
     depends_on:
       - "fp-elb"   
