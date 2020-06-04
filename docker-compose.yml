@@ -10,8 +10,8 @@ services:
     command: >
       --providers.docker
       --providers.docker.exposedbydefault=true
-      --providers.docker.constraints="Label('constraints.zone', 'fp')"
-      --entryPoints.http.address=":80"
+      --providers.docker.constraints="Label(`constraints.zone`, `fp`)"
+      --entryPoints.http.address=:80
       --accesslog
       --log.level=DEBUG
       --api.insecure=true
@@ -48,14 +48,13 @@ services:
       - "9803-9805:10011"  
     labels:
       - "constraints.zone=fp"
-      - "traefik.http.routers.fp-orders.entrypoints=web"
+      - "traefik.http.routers.fp-orders.entrypoints=http"
       - "traefik.http.routers.fp-orders.rule=PathPrefix(`/api/v1/tea`)"
       - "traefik.http.services.fp-orders.loadbalancer.server.port=10011"
       - "traefik.backend=fp-orders"
       - "traefik.port=10011"
       - "traefik.backend.healthcheck.path=/health"
       - "traefik.enable=true"
-
   fp-feedback:
     build:
       context: fp-service-feedback
@@ -72,15 +71,13 @@ services:
       - "9806-9808:3000"  
     labels:
       # comment out for test only 
-      # - "constraints.zone=fp"
-      - "traefik.http.routers.fp-feedback.entrypoints=web"
+      - "constraints.zone=fp"
       - "traefik.http.routers.fp-feedback.rule=PathPrefix(`/feedback`, `/atom`)"
       - "traefik.http.services.fp-feedback.loadbalancer.server.port=3000"
       - "traefik.backend=fp-feedback"
       - "traefik.port=3000"
       - "traefik.backend.healthcheck.path=/health"
       - "traefik.enable=true"  
-
   fp-nginx:
     build:
       context: fp-server
@@ -99,7 +96,6 @@ services:
       - "9802:80"  
     labels:
       - "constraints.zone=fp"
-      - "traefik.http.routers.fp-nginx.entrypoints=web"
       - "traefik.http.routers.fp-nginx.rule=PathPrefix(`/`)"
       - "traefik.http.services.fp-nginx.loadbalancer.server.port=80"
       - "traefik.backend=fp-nginx"
